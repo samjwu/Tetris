@@ -30,7 +30,7 @@ class Grid {
         Tetrominos tetrominos;
         int screen_height;
 
-        void init_board();
+        void init_grid();
 };
  
 #endif // _GRID_
