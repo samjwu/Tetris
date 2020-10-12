@@ -1,3 +1,5 @@
+#include "Tetrominos.h"
+
 /*
  * 4D array for Tetriminos.
  * 
@@ -9,7 +11,7 @@
  * Tetromino names:
  * https://tetris.wiki/Tetromino
  */ 
-char tetriminos[7][4][5][5] =
+char tetriminoArray[7][4][5][5] =
 {
     // O
     {
@@ -302,3 +304,23 @@ int tetrominoInitPos[7][4][2] =
         {-2, -2}
     },
 };
+
+/*
+ * Return a tile of a tetromino
+ * 
+ * Returned tile types:
+ * 0 = none
+ * 1 = normal
+ * 2 = pivot
+*/
+int Tetrominos::get_tetromino_tile(int tetromino, int rotation, int x, int y) {
+    return tetriminoArray[tetromino][rotation][x][y];
+}
+
+int Tetrominos::get_init_x_pos(int tetromino, int rotation) {
+    return tetrominoInitPos[tetromino][rotation][0]
+}
+
+int Tetrominos::get_init_y_pos(int tetromino, int rotation) {
+    return tetrominoInitPos[tetromino][rotation][1]
+}
