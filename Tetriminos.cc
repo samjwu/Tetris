@@ -309,7 +309,7 @@ int tetrominoInitPos[7][4][2] =
  * Return a tile of a tetromino
  * 
  * Returned tile types:
- * 0 = none
+ * 0 = empty
  * 1 = normal
  * 2 = pivot
 */
