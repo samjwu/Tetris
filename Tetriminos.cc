@@ -4,7 +4,7 @@
  * 4D array for Tetriminos.
  * 
  * Dimensions:
- * 7 types of tetriminos
+ * 7 shapes/types of tetriminos
  * 4 rotations per tetrimino
  * 5x5 grid for each tetrimino
  * 
@@ -313,14 +313,20 @@ int tetrominoInitPos[7][4][2] =
  * 1 = normal
  * 2 = pivot
 */
-int Tetrominos::get_tetromino_tile(int tetromino, int rotation, int x, int y) {
-    return tetriminoArray[tetromino][rotation][x][y];
+int Tetrominos::get_tetromino_tile(int shape, int rotation, int x, int y) {
+    return tetriminoArray[shape][rotation][x][y];
 }
 
-int Tetrominos::get_init_x_pos(int tetromino, int rotation) {
-    return tetrominoInitPos[tetromino][rotation][0]
+/*
+ * Return initial x position of a tetromino
+ */
+int Tetrominos::get_init_x_pos(int shape, int rotation) {
+    return tetrominoInitPos[shape][rotation][0]
 }
 
-int Tetrominos::get_init_y_pos(int tetromino, int rotation) {
-    return tetrominoInitPos[tetromino][rotation][1]
+/*
+ * Return initial y position of a tetromino
+ */
+int Tetrominos::get_init_y_pos(int shape, int rotation) {
+    return tetrominoInitPos[shape][rotation][1]
 }

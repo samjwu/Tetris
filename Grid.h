@@ -13,24 +13,24 @@
 #define GRID_HEIGHT 20 // measured in tiles
 
 class Grid {
+    private:
+        enum {EMPTY, FULL};
+        int grid[GRID_WIDTH][GRID_HEIGHT];
+        int screen_height;
+        Tetrominos *tetrominos;
+
+        void init_grid();
+
     public: 
         Grid(Tetrominos *tetrominos, int screen_height);
 
         int get_x_pixel_pos(int x);
         int get_y_pixel_pos(int y);
         bool is_empty_tile(int x, int y);
-        bool can_move(int x, int y, int tetromino, int rotation);
-        void place_tetromino(int x, int y, int tetromino, int rotation);
+        bool can_move(int x, int y, int shape, int rotation);
+        void place_tetromino(int x, int y, int shape, int rotation);
         void clear_line();
         bool game_over();
-
-    private:
-        enum {EMPTY, FULL};
-        int grid[GRID_WIDTH][GRID_HEIGHT];
-        Tetrominos tetrominos;
-        int screen_height;
-
-        void init_grid();
 };
  
 #endif // _GRID_
