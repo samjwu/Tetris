@@ -12,7 +12,7 @@ void Grid::init_grid() {
 }
 
 /*
- * Clear a line by moving all tiles above the line down by one row
+ * Clear a line by moving all tiles above the line down by one line
  * Note grid_y is 0-indexed in order of top to bottom
  */
 void Grid::clear_line(int y) {
@@ -21,6 +21,38 @@ void Grid::clear_line(int y) {
             grid[grid_x][grid_y] = grid[grid_x][grid_y - 1];
         }
     }
+}
+
+/*
+ * Scan grid and clears all filled lines
+ */
+void Grid::clear_full_lines() {
+    for (int grid_y = 0; grid_y < GRID_HEIGHT; grid_y++) {
+        int grid_x = 0;
+        while (grid_x < GRID_WIDTH) {
+            if (grid[grid_x][grid_y] != FULL) {
+                break;
+            }
+            grid_x++;
+        }
+
+        if (grid_x == GRID_WIDTH) {
+            clear_line(grid_y);
+        }
+    }
+}
+
+/*
+ * Check for game over state (when top grid tile/position is full)
+ * Note grid_y = 0 is the top line
+ */
+bool Grid::game_over() {
+    for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
+        if (grid[grid_x][0] == FULL) {
+            return true;
+        }
+    }
+    return false;
 }
 
 /*
@@ -36,17 +68,4 @@ void Grid::place_tetromino(int x, int y, int shape, int rotation) {
             }
         }
     }
-}
-
-/*
- * Check for game over state (when top grid tile/position is full)
- * Note grid_y = 0 is the top row
- */
-bool Grid::game_over() {
-    for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
-        if (grid[grid_x][0] == FULL) {
-            return true;
-        }
-    }
-    return false;
 }
