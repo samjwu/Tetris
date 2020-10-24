@@ -24,7 +24,6 @@ class Grid {
 
     public: 
         Grid(Tetrominos *tetrominos, int screen_height);
-
         void clear_full_lines();
         void place_tetromino(int x, int y, int shape, int rotation);
         bool game_over();

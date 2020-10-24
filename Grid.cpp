@@ -114,7 +114,7 @@ bool Grid::can_move(int x, int y, int shape, int rotation) {
  * Get tile x position on grid in units of pixels
  */
 int Grid::get_x_pixel_pos(int x) {
-    return (GRID_HORIZ_CENTER - (TILE_SIZE * (GRID_WIDTH/2)) + (x * TILE_SIZE));
+    return (GRID_HORIZ_CENTER - (TILE_SIZE * (GRID_WIDTH / 2)) + (x * TILE_SIZE));
 }
 
 /*

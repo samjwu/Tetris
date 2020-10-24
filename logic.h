@@ -17,12 +17,16 @@ class Logic {
         Grid *grid;
         Tetrominos *tetrominos;
         
-        int generate_random_integer(int a, int b);
         void init_game();
-        void init_create_grid();
+        void create_grid();
         void create_tetromino(int x, int y, int shape, int rotation);
+        int generate_random_integer(int a, int b);
 
     public:
+        int x_pos, y_pos;
+        int shape;
+        int rotation;
+
         Logic(Grid *grid, Tetrominos *tetrominos);
 };
  
