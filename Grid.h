@@ -20,7 +20,7 @@ class Grid {
         Tetrominos *tetrominos;
 
         void init_grid();
-        void clear_line();
+        void clear_line(int y);
 
     public: 
         Grid(Tetrominos *tetrominos, int screen_height);
