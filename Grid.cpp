@@ -87,3 +87,10 @@ bool Grid::is_empty_tile(int x, int y) {
 int Grid::get_x_pixel_pos(int x) {
     return (GRID_HORIZ_CENTER - (TILE_SIZE * (GRID_WIDTH/2)) + (x * TILE_SIZE));
 }
+
+/*
+ * Get tile y position on grid in units of pixels
+ */
+int Grid::get_y_pixel_pos(int y) {
+    return (screen_height - (TILE_SIZE * (GRID_HEIGHT)) + (y * TILE_SIZE));
+}
