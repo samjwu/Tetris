@@ -7,7 +7,7 @@
 #define MIN_VERT_MARGIN 20 // measured in pixels
 #define MIN_HORIZ_MARGIN 20 // measured in pixels
 #define GRID_HORIZ_CENTER 320 // middle of grid horizontally measured in pixels
-#define TILE_SIZE 16 // measured in pixels
+#define TILE_SIZE 16 // tiles are 16x16 pixels
 #define TETROMINO_TILE_LENGTH 5 // tetrominos are 5x5 tiles
 #define GRID_WIDTH 10 // measured in tiles
 #define GRID_HEIGHT 20 // measured in tiles
@@ -15,7 +15,7 @@
 class Grid {
     private:
         enum {EMPTY = 0, FULL = 1};
-        int screen_height;
+        int screen_height; // measured in pixels
         int grid[GRID_WIDTH][GRID_HEIGHT];
         Tetrominos *tetrominos;
 
