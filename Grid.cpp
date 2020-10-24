@@ -48,8 +48,8 @@ void Grid::clear_full_lines() {
 void Grid::place_tetromino(int x, int y, int shape, int rotation) {
     int grid_x, grid_y;
     int tetromino_x, tetromino_y;
-    for (grid_x = x, tetromino_x = 0; grid_x < x + TILES_PER_TETROMINO; grid_x++; tetromino_x++) {
-        for (grid_y = y, tetromino_y = 0; grid_y < y + TILES_PER_TETROMINO; grid_y++; tetromino_y++) {
+    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILE_LENGTH; grid_x++; tetromino_x++) {
+        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILE_LENGTH; grid_y++; tetromino_y++) {
             if (tetrimonos->get_tetromino_tile(shape, rotation, tetromino_x, tetromino_y) != EMPTY) {
                 grid[grid_x][grid_y] = FULL;
             }
@@ -79,4 +79,11 @@ bool Grid::is_empty_tile(int x, int y) {
     } else {
         return false;
     }
+}
+
+/*
+ * Get tile x position on grid in units of pixels
+ */
+int Grid::get_x_pixel_pos(int x) {
+    return (GRID_HORIZ_CENTER - (TILE_SIZE * (GRID_WIDTH/2)) + (x * TILE_SIZE));
 }
