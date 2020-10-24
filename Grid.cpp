@@ -43,6 +43,21 @@ void Grid::clear_full_lines() {
 }
 
 /*
+ * Fill in tiles in the grid to place a tetromino
+ */
+void Grid::place_tetromino(int x, int y, int shape, int rotation) {
+    int grid_x, grid_y;
+    int tetromino_x, tetromino_y;
+    for (grid_x = x, tetromino_x = 0; grid_x < x + TILES_PER_TETROMINO; grid_x++; tetromino_x++) {
+        for (grid_y = y, tetromino_y = 0; grid_y < y + TILES_PER_TETROMINO; grid_y++; tetromino_y++) {
+            if (tetrimonos->get_tetromino_tile(shape, rotation, tetromino_x, tetromino_y) != EMPTY) {
+                grid[grid_x][grid_y] = FULL;
+            }
+        }
+    }
+}
+
+/*
  * Check for game over state (when top grid tile/position is full)
  * Note grid_y = 0 is the top line
  */
@@ -56,16 +71,12 @@ bool Grid::game_over() {
 }
 
 /*
- * Fill in tiles in the grid to place a tetromino
+ * Check if tile is empty or full 
  */
-void Grid::place_tetromino(int x, int y, int shape, int rotation) {
-    int grid_x, grid_y;
-    int tetromino_x, tetromino_y;
-    for (grid_x = x, tetromino_x = 0; grid_x < x + TILES_PER_TETROMINO; grid_x++; tetromino_x++) {
-        for (grid_y = y, tetromino_y = 0; grid_y < y + TILES_PER_TETROMINO; grid_y++; tetromino_y++) {
-            if (tetrimonos->get_tetromino_tile(shape, rotation, tetromino_x, tetromino_y) != EMPTY) {
-                grid[grid_x][grid_y] = FULL;
-            }
-        }
+bool Grid::is_empty_tile(int x, int y) {
+    if (grid[x][y] == EMPTY) {
+        return true;
+    } else {
+        return false;
     }
 }

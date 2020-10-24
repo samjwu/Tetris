@@ -26,8 +26,8 @@ class Grid {
         Grid(Tetrominos *tetrominos, int screen_height);
 
         void clear_full_lines();
-        bool game_over();
         void place_tetromino(int x, int y, int shape, int rotation);
+        bool game_over();
         bool is_empty_tile(int x, int y);
         bool can_move(int x, int y, int shape, int rotation);
         int get_x_pixel_pos(int x);
