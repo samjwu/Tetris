@@ -14,12 +14,13 @@
 
 class Grid {
     private:
-        enum {EMPTY, FULL};
+        enum {EMPTY = 0, FULL = 1};
         int grid[GRID_WIDTH][GRID_HEIGHT];
         int screen_height;
         Tetrominos *tetrominos;
 
         void init_grid();
+        void clear_line();
 
     public: 
         Grid(Tetrominos *tetrominos, int screen_height);
@@ -29,7 +30,7 @@ class Grid {
         bool is_empty_tile(int x, int y);
         bool can_move(int x, int y, int shape, int rotation);
         void place_tetromino(int x, int y, int shape, int rotation);
-        void clear_line();
+        void clear_lines();
         bool game_over();
 };
  
