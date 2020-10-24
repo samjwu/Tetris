@@ -18,8 +18,8 @@ class Logic {
         Tetrominos *tetrominos;
         
         void init_game();
-        void create_grid();
-        void create_tetromino(int x, int y, int shape, int rotation);
+        void generate_grid();
+        void generate_tetromino_tiles(int x, int y, int shape, int rotation);
         int generate_random_integer(int a, int b);
 
     public:
@@ -28,6 +28,8 @@ class Logic {
         int rotation;
 
         Logic(Grid *grid, Tetrominos *tetrominos);
+        void create_new_tetromino();
+        void create_new_grid();
 };
  
 #endif // _LOGIC_
