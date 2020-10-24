@@ -15,11 +15,15 @@ class Logic {
         int next_shape;
         int next_rotation;
         Grid *grid;
-
-    public:
+        Tetrominos *tetrominos;
+        
+        int generate_random_integer(int a, int b);
         void init_game();
         void init_create_grid();
         void create_tetromino(int x, int y, int shape, int rotation);
+
+    public:
+        Logic(Grid *grid, Tetrominos *tetrominos);
 };
  
 #endif // _LOGIC_
