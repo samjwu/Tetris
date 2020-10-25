@@ -1,10 +1,12 @@
 #include "Grid.h"
 
 /*
- * Constructor
+ * Constructor. Initializes grid.
  */
-void Grid::Grid() {
-    
+void Grid::Grid(Tetrominos *tetrominos, int screen_height) {
+    this->tetrominos = tetrominos;
+    this->screen_height = screen_height;
+    init_grid();
 }
 
 /*

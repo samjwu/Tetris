@@ -15,7 +15,7 @@
 class Grid {
     public: 
         Grid(Tetrominos *tetrominos, int screen_height);
-        
+
         void clear_full_lines();
         void place_tetromino(int x, int y, int shape, int rotation);
         bool game_over();
@@ -30,9 +30,9 @@ class Grid {
         void init_grid();
         void clear_line(int y);
         
-        int screen_height; // measured in pixels
         int grid[GRID_WIDTH][GRID_HEIGHT];
         Tetrominos *tetrominos;
+        int screen_height; // measured in pixels
 
 };
  
