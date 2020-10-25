@@ -313,8 +313,8 @@ int tetrominoInitPos[7][4][2] =
  * 1 = normal
  * 2 = pivot
 */
-int Tetrominos::get_tile_type(int shape, int rotation, int x, int y) {
-    return tetriminoArray[shape][rotation][x][y];
+int Tetrominos::get_tile_type(int shape, int rotation, int tile_x, int tile_y) {
+    return tetriminoArray[shape][rotation][tile_x][tile_y];
 }
 
 /*
