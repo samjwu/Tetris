@@ -16,9 +16,9 @@ class Logic {
         void create_new_tetromino();
         void init_game();
 
-        int x_pos, y_pos;
-        int shape;
-        int rotation;
+        int current_x_pos, current_y_pos;
+        int current_shape;
+        int current_rotation;
 
     private:
         enum class TileType {EMPTY, NORMAL, PIVOT};
