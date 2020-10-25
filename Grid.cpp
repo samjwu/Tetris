@@ -1,26 +1,10 @@
 #include "Grid.h"
 
 /*
- * Initialize tiles to empty in grid
+ * Constructor
  */
-void Grid::init_grid() {
-    for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
-        for (int grid_y = 0; grid_y < GRID_HEIGHT; grid_y++) {
-            grid[grid_x][grid_y] = TileSuperType::EMPTY;
-        }
-    }
-}
-
-/*
- * Clear a line by moving all tiles above the line down by one line
- * Note grid_y is 0-indexed in order of top to bottom
- */
-void Grid::clear_line(int y) {
-    for (int grid_y = y; grid_y > 0; grid_y--) {
-        for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
-            grid[grid_x][grid_y] = grid[grid_x][grid_y - 1];
-        }
-    }
+void Grid::Grid() {
+    
 }
 
 /*
@@ -122,4 +106,27 @@ int Grid::get_tile_x_pixel_pos(int x) {
  */
 int Grid::get_tile_y_pixel_pos(int y) {
     return (screen_height - (TILE_SIZE * (GRID_HEIGHT)) + (y * TILE_SIZE));
+}
+
+/*
+ * Initialize tiles to empty in grid
+ */
+void Grid::init_grid() {
+    for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
+        for (int grid_y = 0; grid_y < GRID_HEIGHT; grid_y++) {
+            grid[grid_x][grid_y] = TileSuperType::EMPTY;
+        }
+    }
+}
+
+/*
+ * Clear a line by moving all tiles above the line down by one line
+ * Note grid_y is 0-indexed in order of top to bottom
+ */
+void Grid::clear_line(int y) {
+    for (int grid_y = y; grid_y > 0; grid_y--) {
+        for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
+            grid[grid_x][grid_y] = grid[grid_x][grid_y - 1];
+        }
+    }
 }
