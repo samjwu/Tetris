@@ -19,5 +19,5 @@ RenderingEngine::RenderingEngine() {
  * Clear screen by setting all pixels to black
  */
 void RenderingEngine::clear_screen() {
-	boxColor(screen, 0, 0, screen->w - 1, screen->h - 1, colors[Color::BLACK]);
+	boxColor(screen, 0, 0, screen->w - 1, screen->h - 1, colors[(int) Color::BLACK]);
 }
