@@ -18,6 +18,7 @@ class Logic {
         int next_rotation;
         Grid *grid;
         Tetrominos *tetrominos;
+        RenderingEngine *rendering_engine;
         
         void init_game();
         void generate_grid();
@@ -29,7 +30,7 @@ class Logic {
         int shape;
         int rotation;
 
-        Logic(Grid *grid, Tetrominos *tetrominos);
+        Logic(Grid *grid, Tetrominos *tetrominos, RenderingEngine *rendering_engine);
         void create_new_tetromino();
         void create_new_grid();
 };
