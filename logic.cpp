@@ -23,8 +23,29 @@ void Logic::init_game() {
 /*
  * Generate attributes for the tiles of a tetromino
  */
-void Logic::generate_tetromino_tiles() {
+void Logic::generate_tetromino_tiles(int x, int y, int shape, int rotation) {
+    Color tile_color;
 
+    // pixel position for new tile
+    int tile_x_pixel = grid->get_tile_x_pixel_pos(x);
+    int tile_y_pixel = grid->get_tile_y_pixel_pos(y);
+
+    for (int tile_y = 0; tile_y < TETROMINO_TILE_LENGTH; tile_y++) {
+        for (int tile_x = 0; tile_x < TETROMINO_TILE_LENGTH; tile_x++) {
+            switch (tetrominos->get_tile_type(shape, rotation, tile_x, tile_y)) {
+                case TileType::NORMAL:
+                    tile_color = Color::BLUE;
+                    break;
+                case TileType::PIVOT:
+                    tile_color = Color::WHITE;
+                    break;
+            }
+
+            if (tetrominos->get_tile_type(shape, rotation, tile_x, tile_y) != TileType::EMPTY) {
+            
+            }
+        }
+    }
 }
 
 /*
