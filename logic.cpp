@@ -27,6 +27,15 @@ void Logic::create_new_tetromino() {
 }
 
 /*
+ * Initialize game objects
+ */
+void Logic::init_game() {
+    generate_grid();
+    generate_tetromino_tiles(this->x_pos, this->y_pos, this->shape, this->rotation);
+    generate_tetromino_tiles(this->next_x_pos, this->next_y_pos, this->next_shape, this->next_rotation);
+}
+
+/*
  * Initialize game logic variables
  */
 void Logic::init_game_logic() {
@@ -44,6 +53,13 @@ void Logic::init_game_logic() {
     this->next_y_pos = 5;
     this->next_shape = generate_random_integer(0, 6); // 7 shapes
     this->next_rotation = generate_random_integer(0, 3); // 4 rotations
+}
+
+/*
+ * Generate grid 
+ */
+void Logic::generate_grid() {
+
 }
 
 /*

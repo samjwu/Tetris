@@ -14,7 +14,7 @@ class Logic {
         Logic(Grid *grid, Tetrominos *tetrominos, RenderingEngine *rendering_engine, int screen_height);
         
         void create_new_tetromino();
-        void create_new_grid();
+        void init_game();
 
         int x_pos, y_pos;
         int shape;
