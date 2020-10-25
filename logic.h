@@ -25,7 +25,7 @@ class Logic {
         
         void init_game_logic();
         void generate_grid();
-        void generate_tetromino_tiles(int x, int y, int shape, int rotation);
+        void generate_tetromino_tiles(int tetromino_x, int tetromino_y, int tetromino_shape, int tetromino_rotation);
         int generate_random_integer(int a, int b);
         
         Grid *grid;

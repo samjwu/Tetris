@@ -16,14 +16,14 @@ void Logic::Logic(Grid *grid, Tetrominos *tetrominos, RenderingEngine *rendering
  */
 void Logic::create_new_tetromino() {
     // set new tetromino attributes
-    shape = next_shape;
-    rotation = next_rotation;
-    x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_y_pos(shape, rotation);
-    y_pos = tetrominos->get_init_y_pos(shape, rotation);
+    this->shape = this->next_shape;
+    this->rotation = this->next_rotation;
+    this->x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_y_pos(this->shape, this->rotation);
+    this->y_pos = tetrominos->get_init_y_pos(this->shape, this->rotation);
 
     // generate next tetromino attributes
-    next_shape = generate_random_integer(0, 6);
-    next_rotation = generate_random_integer(0, 3);
+    this->next_shape = generate_random_integer(0, 6);
+    this->next_rotation = generate_random_integer(0, 3);
 }
 
 /*
@@ -34,31 +34,31 @@ void Logic::init_game_logic() {
     srand ((unsigned int) time(NULL));
 
     // current tetromino
-    shape = generate_random_integer(0, 6); // 7 shapes
-    rotation = generate_random_integer(0, 3); // 4 rotations
-    x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_x_pos(shape, rotation);
-    y_pos = tetrominos->get_init_y_pos(shape, rotation);
+    this->shape = generate_random_integer(0, 6); // 7 shapes
+    this->rotation = generate_random_integer(0, 3); // 4 rotations
+    this->x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_x_pos(this->shape, this->rotation);
+    this->y_pos = tetrominos->get_init_y_pos(this->shape, this->rotation);
 
     // next tetromino
-    next_x_pos = GRID_WIDTH + 5; // right side of grid border
-    next_y_pos = 5;
-    next_shape = generate_random_integer(0, 6); // 7 shapes
-    next_rotation = generate_random_integer(0, 3); // 4 rotations
+    this->next_x_pos = GRID_WIDTH + 5; // right side of grid border
+    this->next_y_pos = 5;
+    this->next_shape = generate_random_integer(0, 6); // 7 shapes
+    this->next_rotation = generate_random_integer(0, 3); // 4 rotations
 }
 
 /*
  * Generate attributes for the tiles of a tetromino
  */
-void Logic::generate_tetromino_tiles(int x, int y, int shape, int rotation) {
+void Logic::generate_tetromino_tiles(int tetromino_x, int tetromino_y, int tetromino_shape, int tetromino_rotation) {
     Color tile_color;
 
     // pixel position for new tile
-    int tile_x_pixel = grid->get_tile_x_pixel_pos(x);
-    int tile_y_pixel = grid->get_tile_y_pixel_pos(y);
+    int tetromino_x_pixel = grid->get_tile_x_pixel_pos(tetromino_x);
+    int tetromino_y_pixel = grid->get_tile_y_pixel_pos(tetromino_y);
 
-    for (int tile_y = 0; tile_y < TETROMINO_TILE_LENGTH; tile_y++) {
-        for (int tile_x = 0; tile_x < TETROMINO_TILE_LENGTH; tile_x++) {
-            switch (tetrominos->get_tile_type(shape, rotation, tile_x, tile_y)) {
+    for (int tile_y = 0; tile_y < TETROMINO_TILES_PER_SIDE; tile_y++) {
+        for (int tile_x = 0; tile_x < TETROMINO_TILES_PER_SIDE; tile_x++) {
+            switch (tetrominos->get_tile_type(tetromino_shape, tetromino_rotation, tile_x, tile_y)) {
                 case TileType::NORMAL:
                     tile_color = Color::BLUE;
                     break;
@@ -67,8 +67,9 @@ void Logic::generate_tetromino_tiles(int x, int y, int shape, int rotation) {
                     break;
             }
 
-            if (tetrominos->get_tile_type(shape, rotation, tile_x, tile_y) != TileType::EMPTY) {
-            
+            if (tetrominos->get_tile_type(tetromino_shape, tetromino_rotation, tile_x, tile_y) != TileType::EMPTY) {
+                rendering_engine->render_tile(tetromino_x_pixel + tile_x * TILE_SIZE, tetromino_y_pixel + tile_y * TILE_SIZE, 
+                                            tetromino_x_pixel + (tile_x + 1) * TILE_SIZE - 1, tetromino_y_pixel + (tile_y + 1) * TILE_SIZE - 1, tile_color);
             }
         }
     }
