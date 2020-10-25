@@ -21,3 +21,10 @@ RenderingEngine::RenderingEngine() {
 void RenderingEngine::clear_screen() {
 	boxColor(screen, 0, 0, screen->w - 1, screen->h - 1, colors[(int) Color::BLACK]);
 }
+
+/* 
+* Update screen
+*/
+void RenderingEngine::update_screen() {
+	SDL_Flip(screen);
+}
