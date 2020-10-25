@@ -1,9 +1,14 @@
-#include "logic.h"
+#include "Logic.h"
 
 /*
- * Constructor
+ * Constructor. Initializes game logic variables.
  */
-void Logic::Logic() {
+void Logic::Logic(Grid *grid, Tetrominos *tetrominos, RenderingEngine *rendering_engine, int screen_height) {
+    this->grid = grid;
+    this->tetrominos = tetrominos;
+    this->rendering_engine = rendering_engine;
+    this->screen_height = screen_height;
+    init_game_logic();
 }
 
 /*
@@ -24,7 +29,7 @@ void Logic::create_new_tetromino() {
 /*
  * Initialize game logic variables
  */
-void Logic::init_game() {
+void Logic::init_game_logic() {
     // pseudo-random non-negative number generator
     srand ((unsigned int) time(NULL));
 

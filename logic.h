@@ -23,7 +23,7 @@ class Logic {
     private:
         enum class TileType {EMPTY, NORMAL, PIVOT};
         
-        void init_game();
+        void init_game_logic();
         void generate_grid();
         void generate_tetromino_tiles(int x, int y, int shape, int rotation);
         int generate_random_integer(int a, int b);
