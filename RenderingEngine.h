@@ -9,6 +9,7 @@ enum class Color {BLACK, WHITE, BLUE, RED};
 class RenderingEngine {
     public:
         RenderingEngine();
+        
         void clear_screen();
         void update_screen();
         void render_tile(int x1, int y1, int x2, int y2, Color tile_color);
