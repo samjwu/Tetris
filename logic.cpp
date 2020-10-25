@@ -27,7 +27,7 @@ void Logic::create_new_tetromino() {
 }
 
 /*
- * Initialize game objects
+ * Initialize game objects (grid, current tetromino, next tetromino)
  */
 void Logic::init_game() {
     generate_grid();
@@ -56,14 +56,32 @@ void Logic::init_game_logic() {
 }
 
 /*
- * Generate grid 
+ * Generate grid borders and placed tetromino tiles
  */
 void Logic::generate_grid() {
+    // calculate grid borders in pixels
+    int left_border = GRID_HORIZ_CENTER - (TILE_SIZE * (GRID_WIDTH / 2)) - 1; // 0-indexed
+    int right_border = GRID_HORIZ_CENTER + (TILE_SIZE * (GRID_WIDTH / 2));
+    int top_border = this->screen_height - (TILE_SIZE * GRID_HEIGHT); // 0-indexed from top to bottom
 
+    // render grid borders
+    rendering_engine->render_tile(left_border - GRID_BORDER_WIDTH, top_border, left_border, this->screen_height - 1, Color::WHITE);
+    rendering_engine->render_tile(right_border, top_border, right_border + GRID_BORDER_WIDTH, this->screen_height - 1, Color::WHITE);
+	
+	// render tetromino tiles that were placed in the grid
+    grid_left = left_border + 1;
+    for (int tile_x; tile_x < GRID_WIDTH; tile_x++) {
+        for (int tile_y; tile_y < GRID_HEIGHT; tile_y++) {
+            if (grid->is_empty_tile(tile_x, tile_y) == false) {
+                rendering_engine->render_tile(grid_left + tile_x * TILE_SIZE, top_border + tile_y * TILE_SIZE, 
+                                            grid_left + (tile_x + 1) * TILE_SIZE - 1, top_border + (tile_y + 1) * TILE_SIZE - 1, Color::RED);
+            }
+        }
+    }
 }
 
 /*
- * Generate attributes for the tiles of a tetromino
+ * Generate attributes for the tiles of a tetromino and render it to screen
  */
 void Logic::generate_tetromino_tiles(int tetromino_x, int tetromino_y, int tetromino_shape, int tetromino_rotation) {
     Color tile_color;
