@@ -16,6 +16,13 @@ RenderingEngine::RenderingEngine() {
 }
 
 /*
+ * Render the grid
+ */
+void RenderingEngine::render_grid() {
+	
+}
+
+/*
  * Clear screen by setting all pixels to black
  */
 void RenderingEngine::clear_screen() {
@@ -27,4 +34,11 @@ void RenderingEngine::clear_screen() {
 */
 void RenderingEngine::update_screen() {
 	SDL_Flip(screen);
+}
+
+/* 
+* Render a tile with a given color
+*/
+void render_tile(int x1, int y1, int x2, int y2, Color tile_color) {
+    boxColor(screen, x1, y1, x2, y2 - 1, colors[(int) tile_color]);
 }
