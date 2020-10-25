@@ -85,8 +85,13 @@ int RenderingEngine::get_key_input() {
 }
 
 /* 
-* 
+* Put all key states into hash table with events as keys
+* Then return state of pressed key
 */
-int RenderingEngine::get_key_state(int key) {
-
+int RenderingEngine::get_key_state(int key_pressed) {
+    Uint8* key_states;
+	int num_keys;
+	SDL_PumpEvents();
+	key_states = SDL_GetKeyState(&num_keys);
+	return key_states[key_pressed];
 }
