@@ -38,7 +38,37 @@ void RenderingEngine::update_screen() {
 
 /* 
 * Render a tile with a given color
+* Point (x1, y1) is the top left of the tile (in pixels)
+* Point (x2, y2) is the bottom right of the tile (in pixels)
 */
-void render_tile(int x1, int y1, int x2, int y2, Color tile_color) {
+void RenderingEngine::render_tile(int x1, int y1, int x2, int y2, Color tile_color) {
     boxColor(screen, x1, y1, x2, y2 - 1, colors[(int) tile_color]);
+}
+
+/* 
+* Return height of screen in pixels
+*/
+int RenderingEngine::get_screen_height() {
+    return screen->h;
+}
+
+/* 
+* 
+*/
+int RenderingEngine::poll_key_input() {
+
+}
+
+/* 
+* 
+*/
+int RenderingEngine::get_key_input() {
+
+}
+
+/* 
+* 
+*/
+int RenderingEngine::get_key_state(int key) {
+
 }
