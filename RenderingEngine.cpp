@@ -53,7 +53,8 @@ int RenderingEngine::get_screen_height() {
 }
 
 /* 
-* 
+* Poll for input from keyboard
+* Return input if valid key, exit if input is ESC, else return -1 for error
 */
 int RenderingEngine::poll_key_input() {
     SDL_Event event;
@@ -69,10 +70,18 @@ int RenderingEngine::poll_key_input() {
 }
 
 /* 
-* 
+* Return input from keyboard
 */
 int RenderingEngine::get_key_input() {
-
+    SDL_Event event;
+	while (true) {
+	  SDL_WaitEvent(&event);
+	  if (event.type == SDL_KEYDOWN)
+		  break;
+      if (event.type == SDL_QUIT) // ESC key
+		  exit(3);
+	};
+	return event.key.keysym.sym;
 }
 
 /* 
