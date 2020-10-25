@@ -4,12 +4,14 @@
 #include <time.h>
 
 #include "Grid.h"
+#include "RenderingEngine.h"
 #include "Tetriminos.h"
 
 #define DELAY 750 // delay before tetromino falls each tick measured in ms
 
 class Logic {
     private:
+        enum class TileType {EMPTY, NORMAL, PIVOT};
         int screen_height; // measured in pixels
         int next_x_pos, next_y_pos;
         int next_shape;
