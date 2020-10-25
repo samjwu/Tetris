@@ -34,8 +34,8 @@ void Grid::clear_full_lines() {
 void Grid::place_tetromino(int x, int y, int shape, int rotation) {
     int grid_x, grid_y;
     int tetromino_x, tetromino_y;
-    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILE_LENGTH; grid_x++; tetromino_x++) {
-        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILE_LENGTH; grid_y++; tetromino_y++) {
+    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILES_PER_SIDE; grid_x++; tetromino_x++) {
+        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILES_PER_SIDE; grid_y++; tetromino_y++) {
             if (tetrimonos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != TileSuperType::EMPTY) {
                 grid[grid_x][grid_y] = FULL;
             }
@@ -74,8 +74,8 @@ bool Grid::is_empty_tile(int x, int y) {
 bool Grid::tetromino_can_move(int x, int y, int shape, int rotation) {
     int grid_x, grid_y;
     int tetromino_x, tetromino_y;
-    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILE_LENGTH; grid_x++; tetromino_x++) {
-        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILE_LENGTH; grid_y++; tetromino_y++) {
+    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILES_PER_SIDE; grid_x++; tetromino_x++) {
+        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILES_PER_SIDE; grid_y++; tetromino_y++) {
             // Grid border collision check
             if (grid_x < 0 || grid_x > GRID_WIDTH - 1 || grid_y > GRID_HEIGHT - 1) {
                 if (tetrimonos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != TileSuperType::EMPTY) {
@@ -85,8 +85,7 @@ bool Grid::tetromino_can_move(int x, int y, int shape, int rotation) {
 
             // Other tetromino collision check
             if (grid_y >= 0) {
-                if (tetrimonos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != TileSuperType::EMPTY \
-                && is_empty_tile(grid_x, grid_y) == false) {
+                if (tetrimonos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != TileSuperType::EMPTY && is_empty_tile(grid_x, grid_y) == false) {
                     return false;
                 }
             }

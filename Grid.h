@@ -8,7 +8,7 @@
 #define MIN_HORIZ_MARGIN 20 // measured in pixels
 #define GRID_HORIZ_CENTER 320 // middle of grid horizontally measured in pixels
 #define TILE_SIZE 16 // tiles are 16x16 pixels
-#define TETROMINO_TILE_LENGTH 5 // tetrominos are 5x5 tiles
+#define TETROMINO_TILES_PER_SIDE 5 // tetrominos are 5x5 tiles
 #define GRID_WIDTH 10 // measured in tiles
 #define GRID_HEIGHT 20 // measured in tiles
 
