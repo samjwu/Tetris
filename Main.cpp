@@ -15,10 +15,18 @@
  *      https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
  */     
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-
     RenderingEngine rendering_engine;
     int screen_height = rendering_engine.get_screen_height();
     Tetrominos tetrominos;
     Grid grid(&tetrominos, screen_height);
-    Logic gameLogic(&grid, &tetrominos, &rendering_engine, screen_height);
+    Logic game_logic(&grid, &tetrominos, &rendering_engine, screen_height);
+
+    // ticks time in milliseconds
+    unsigned long ticks_time = SDL_GetTicks();
+
+    while (rendering_engine.get_key_state(SDLK_ESCAPE) == 0) {
+        rendering_engine.clear_screen();
+        game_logic.init_game();
+        rendering_engine.update_screen();
+    }
 }
