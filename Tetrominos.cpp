@@ -1,17 +1,17 @@
 #include "Tetrominos.h"
 
 /*
- * 4D array for Tetriminos.
+ * 4D array for Tetrominos.
  * 
  * Dimensions:
- * 7 shapes/types of tetriminos
- * 4 rotations per tetrimino
- * 5x5 grid for each tetrimino
+ * 7 shapes/types of tetrominos
+ * 4 rotations per tetromino
+ * 5x5 grid for each tetromino
  * 
  * Tetromino names:
  * https://tetris.wiki/Tetromino
  */ 
-char tetriminoArray[7][4][5][5] =
+char tetrominoArray[7][4][5][5] =
 {
     // O
     {
@@ -239,11 +239,11 @@ char tetriminoArray[7][4][5][5] =
 };
 
 /*
- * 3D array for Tetrimino initial positions.
+ * 3D array for tetromino initial positions.
  * 
  * Dimensions:
- * 7 types of tetriminos
- * 4 rotations per tetrimino
+ * 7 types of tetrominos
+ * 4 rotations per tetromino
  * 2 for initial x/y position
  */
 int tetrominoInitPos[7][4][2] =
@@ -314,19 +314,19 @@ int tetrominoInitPos[7][4][2] =
  * 2 = pivot
 */
 int Tetrominos::get_tile_type(int shape, int rotation, int tile_x, int tile_y) {
-    return tetriminoArray[shape][rotation][tile_x][tile_y];
+    return tetrominoArray[shape][rotation][tile_x][tile_y];
 }
 
 /*
  * Return initial x position of a tetromino
  */
 int Tetrominos::get_init_x_pos(int shape, int rotation) {
-    return tetrominoInitPos[shape][rotation][0]
+    return tetrominoInitPos[shape][rotation][0];
 }
 
 /*
  * Return initial y position of a tetromino
  */
 int Tetrominos::get_init_y_pos(int shape, int rotation) {
-    return tetrominoInitPos[shape][rotation][1]
+    return tetrominoInitPos[shape][rotation][1];
 }
