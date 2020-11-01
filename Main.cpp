@@ -17,4 +17,8 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
     RenderingEngine rendering_engine;
+    int screen_height = rendering_engine.get_screen_height();
+    Tetrominos tetrominos;
+    Grid grid(&tetrominos, screen_height);
+    Logic gameLogic(&grid, &tetrominos, &rendering_engine, screen_height);
 }
