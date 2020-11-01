@@ -1,3 +1,4 @@
+#include "AppConstants.h"
 #include "Logic.h"
 
 /**
@@ -15,6 +16,7 @@
  *      https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
  */     
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    // init game objects
     RenderingEngine rendering_engine;
     int screen_height = rendering_engine.get_screen_height();
     Tetrominos tetrominos;
@@ -25,7 +27,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     unsigned long ticks_time = SDL_GetTicks();
 
     while (rendering_engine.get_key_state(SDLK_ESCAPE) == 0) {
-        // init game screen and starting objects
+        // init game screen and starting game logic objects
         rendering_engine.clear_screen();
         game_logic.init_game();
         rendering_engine.update_screen();
@@ -48,6 +50,28 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     game_logic.current_tetromino_x_pos--
                     break;
                 }
+            case SDLK_SPACE:
+                while (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos + 1, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation)) {
+                    game_logic.current_tetromino_y_pos++;
+                }
+                grid.place_tetromino(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation);
+
+                grid.clear_full_lines();
+
+                if (grid.game_over()) {
+                    int buttonId;
+                    if (SDL_ShowMessageBox(&MessageBoxData, &buttonId) < 0) {
+                        SDL_Log("Error displaying message box");
+                        return 1;
+                    }
+                    if (buttonId == -1) {
+                        SDL_Log("Nothing was selected");
+                    } else {
+                        SDL_Log("Selection option was %s", Buttons[buttonId].text);
+                    }
+                }
         }
     }
+
+    return 0;
 }

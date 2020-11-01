@@ -1,7 +1,7 @@
 #ifndef _RENDERINGENGINE_
 #define _RENDERINGENGINE_
   
-#include "SDL/include/SDL.h"                            
+#include "SDL/include/SDL.h"
 #include "SDL/SDL_GfxPrimitives/SDL_gfxPrimitives.h"
 
 enum class Color {BLACK, WHITE, BLUE, RED};
