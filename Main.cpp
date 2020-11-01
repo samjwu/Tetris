@@ -1,5 +1,6 @@
 #include "AppConstants.h"
 #include "Logic.h"
+#include "RestartAPI/RestartAPI.h"
 
 /**
  * Call WinMain as entry point to start process for Windows application
@@ -16,6 +17,11 @@
  *      https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
  */     
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    // check for previous restart
+    if (RA_CheckForRestartProcessStart()) {
+        RA_WaitForPreviousProcessFinish();
+    }
+
     // init game objects
     RenderingEngine rendering_engine;
     int screen_height = rendering_engine.get_screen_height();
@@ -65,13 +71,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                         return 1;
                     }
                     if (buttonId == -1) {
-                        SDL_Log("Nothing was selected");
-                    } else {
-                        SDL_Log("Selection option was %s", Buttons[buttonId].text);
+                        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Selection Error", "Nothing was selected.", NULL);
+                    } else if (buttonId == 0) {
+                        // create new active instance of application
+                        if (!RA_ActivateRestartProcess()) {
+                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Restart Failed", "Error occurred during restart. Exiting application.", NULL);
+                        }
+                    } else { // buttonId == 1
+                        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game Over", "Ending game.", NULL);
+                        
                     }
+                    RA_DoRestartProcessFinish(); // release mutex
+                    exit(0); // close current instance
                 }
         }
     }
 
+    RA_DoRestartProcessFinish(); // release mutex
     return 0;
 }
