@@ -56,12 +56,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     game_logic.current_tetromino_x_pos--
                     break;
                 }
-            case SDLK_SPACE:
+            case SDLK_SPACE: // instantly place current tetromino
                 while (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos + 1, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation)) {
                     game_logic.current_tetromino_y_pos++;
                 }
                 grid.place_tetromino(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation);
-
                 grid.clear_full_lines();
 
                 if (grid.game_over()) {
@@ -79,11 +78,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                         }
                     } else { // buttonId == 1
                         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game Over", "Ending game.", NULL);
-                        
                     }
                     RA_DoRestartProcessFinish(); // release mutex
                     exit(0); // close current instance
                 }
+
+                game_logic.create_new_tetromino(); // generate random next tetromino
+                break;
+            case SDLK_z: // rotate current tetromino
+                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, (game_logic.current_tetromino_rotation + 1) % 4) {
+                    game_logic.current_tetromino_rotation = (game_logic.current_tetromino_rotation + 1) % 4; // 4 possible rotations
+                }
+                break;
         }
     }
 
