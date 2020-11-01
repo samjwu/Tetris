@@ -16,9 +16,9 @@ class Logic {
         void create_new_tetromino();
         void init_game();
 
-        int current_x_pos, current_y_pos;
-        int current_shape;
-        int current_rotation;
+        int current_tetromino_x_pos, current_tetromino_y_pos; // measured in tiles
+        int current_tetromino_shape;
+        int current_tetromino_rotation;
 
     private:
         enum class TileType {EMPTY, NORMAL, PIVOT};
@@ -32,9 +32,9 @@ class Logic {
         Tetrominos *tetrominos;
         RenderingEngine *rendering_engine;
         int screen_height; // measured in pixels
-        int next_x_pos, next_y_pos;
-        int next_shape;
-        int next_rotation;
+        int next_tetromino_x_pos, next_tetromino_y_pos; // measured in tiles
+        int next_tetromino_shape;
+        int next_tetromino_rotation;
 };
  
 #endif // _LOGIC_

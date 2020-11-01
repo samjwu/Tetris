@@ -82,7 +82,7 @@ int RenderingEngine::get_screen_height() {
 }
 
 /* 
-* Poll for input from keyboard
+* Poll (wait on/continuously check) for input from keyboard
 * Return input if valid key, exit if input is ESC, else return -1 for error
 */
 int RenderingEngine::poll_key_input() {

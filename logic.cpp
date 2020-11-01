@@ -16,14 +16,14 @@ void Logic::Logic(Grid *grid, Tetrominos *tetrominos, RenderingEngine *rendering
  */
 void Logic::create_new_tetromino() {
     // set new tetromino attributes
-    this->current_shape = this->next_shape;
-    this->current_rotation = this->next_rotation;
-    this->current_x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_y_pos(this->current_shape, this->current_rotation);
-    this->current_y_pos = tetrominos->get_init_y_pos(this->current_shape, this->current_rotation);
+    this->current_tetromino_shape = this->next_tetromino_shape;
+    this->current_tetromino_rotation = this->next_tetromino_rotation;
+    this->current_tetromino_x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_y_pos(this->current_tetromino_shape, this->current_tetromino_rotation);
+    this->current_tetromino_y_pos = tetrominos->get_init_y_pos(this->current_tetromino_shape, this->current_tetromino_rotation);
 
     // generate next tetromino attributes
-    this->next_shape = generate_random_integer(0, 6);
-    this->next_rotation = generate_random_integer(0, 3);
+    this->next_tetromino_shape = generate_random_integer(0, 6);
+    this->next_tetromino_rotation = generate_random_integer(0, 3);
 }
 
 /*
@@ -31,8 +31,8 @@ void Logic::create_new_tetromino() {
  */
 void Logic::init_game() {
     generate_grid();
-    generate_tetromino_tiles(this->current_x_pos, this->current_y_pos, this->current_shape, this->current_rotation);
-    generate_tetromino_tiles(this->next_x_pos, this->next_y_pos, this->next_shape, this->next_rotation);
+    generate_tetromino_tiles(this->current_tetromino_x_pos, this->current_tetromino_y_pos, this->current_tetromino_shape, this->current_tetromino_rotation);
+    generate_tetromino_tiles(this->next_tetromino_x_pos, this->next_tetromino_y_pos, this->next_tetromino_shape, this->next_tetromino_rotation);
 }
 
 /*
@@ -43,16 +43,16 @@ void Logic::init_game_logic() {
     srand ((unsigned int) time(NULL));
 
     // current tetromino
-    this->current_shape = generate_random_integer(0, 6); // 7 shapes
-    this->current_rotation = generate_random_integer(0, 3); // 4 rotations
-    this->current_x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_x_pos(this->current_shape, this->current_rotation);
-    this->current_y_pos = tetrominos->get_init_y_pos(this->current_shape, this->current_rotation);
+    this->current_tetromino_shape = generate_random_integer(0, 6); // 7 shapes
+    this->current_tetromino_rotation = generate_random_integer(0, 3); // 4 rotations
+    this->current_tetromino_x_pos = (GRID_WIDTH / 2) + tetrominos->get_init_x_pos(this->current_tetromino_shape, this->current_tetromino_rotation);
+    this->current_tetromino_y_pos = tetrominos->get_init_y_pos(this->current_tetromino_shape, this->current_tetromino_rotation);
 
     // next tetromino
-    this->next_x_pos = GRID_WIDTH + 5; // right side of grid border
-    this->next_y_pos = 5;
-    this->next_shape = generate_random_integer(0, 6); // 7 shapes
-    this->next_rotation = generate_random_integer(0, 3); // 4 rotations
+    this->next_tetromino_x_pos = GRID_WIDTH + 5; // right side of grid border
+    this->next_tetromino_y_pos = 5;
+    this->next_tetromino_shape = generate_random_integer(0, 6); // 7 shapes
+    this->next_tetromino_rotation = generate_random_integer(0, 3); // 4 rotations
 }
 
 /*
