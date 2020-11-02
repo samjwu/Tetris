@@ -101,6 +101,7 @@ int RenderingEngine::render_grid() {
 	// 	return 2;
 	// }
 
+	screen_height = 480;
 	sdl_window = SDL_CreateWindow("Tetris", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, 0);
 	// for full screen
 	// sdl_window = SDL_CreateWindow("Tetris",
@@ -130,7 +131,8 @@ int RenderingEngine::render_grid() {
 * Return height of screen in pixels
 */
 int RenderingEngine::get_screen_height() {
-    return screen->h;
+    // return screen->h;
+	return screen_height;
 }
 
 /* 
