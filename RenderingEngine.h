@@ -7,12 +7,6 @@
 #include <vector>
 
 enum class Color {BLACK, WHITE, BLUE, RED};
-std::unordered_map<int, std::vector<int>> ColorRgb = {
-                                            {(int) Color::BLACK, {0, 0, 0}},
-                                            {(int) Color::WHITE, {255, 255, 255}},
-                                            {(int) Color::BLUE, {0, 0, 255}},
-                                            {(int) Color::RED, {255, 0, 0}},
-                                        };
 
 class RenderingEngine {
     public:
@@ -26,6 +20,14 @@ class RenderingEngine {
         int poll_key_input();
         int get_key_input();
         int get_key_state(int key);
+    
+    private:
+        std::unordered_map<int, std::vector<int>> ColorRgb = {
+                                                    {(int) Color::BLACK, {0, 0, 0}},
+                                                    {(int) Color::WHITE, {255, 255, 255}},
+                                                    {(int) Color::BLUE, {0, 0, 255}},
+                                                    {(int) Color::RED, {255, 0, 0}},
+                                                };
 };
  
 #endif // _RENDERINGENGINE_
