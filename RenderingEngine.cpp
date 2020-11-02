@@ -41,12 +41,15 @@ void RenderingEngine::update_screen() {
 */
 void RenderingEngine::render_tile(int x1, int y1, int x2, int y2, Color tile_color) {
     // boxColor(screen, x1, y1, x2, y2 - 1, colors[(int) tile_color]);
-	int r, g, b;
 	int r = ColorRgb[(int) tile_color][0];
 	int g = ColorRgb[(int) tile_color][1];
 	int b = ColorRgb[(int) tile_color][2];
 	SDL_SetRenderDrawColor(sdl_renderer, r, g, b, 255);
-	SDL_Rect tile(x1, y1, (x2 - x1), (y2 - y1));
+	SDL_Rect tile;
+	tile.x = x1;
+	tile.y = y1;
+	tile.w = (x2 - x1);
+	tile.h = (y2 - y1);
 	SDL_RenderFillRect(sdl_renderer, &tile);
 	SDL_RenderPresent(sdl_renderer);
 }

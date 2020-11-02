@@ -4,9 +4,10 @@
 #include "SDL/include/SDL.h"
 #include "SDL/SDL_GfxPrimitives/SDL_gfxPrimitives.h"
 #include <unordered_map>
+#include <vector>
 
 enum class Color {BLACK, WHITE, BLUE, RED};
-std::unordered_map<int, int*> ColorRgb = {
+std::unordered_map<int, std::vector<int>> ColorRgb = {
                                             {(int) Color::BLACK, {0, 0, 0}},
                                             {(int) Color::WHITE, {255, 255, 255}},
                                             {(int) Color::BLUE, {0, 0, 255}},
