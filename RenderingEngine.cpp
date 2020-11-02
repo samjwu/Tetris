@@ -170,9 +170,9 @@ int RenderingEngine::get_key_input() {
 * Then return state of pressed key
 */
 int RenderingEngine::get_key_state(int key_pressed) {
-    Uint8* key_states;
-	int num_keys;
+    const Uint8* key_states;
+	int *num_keys;
 	SDL_PumpEvents();
-	key_states = SDL_GetKeyboardState(&num_keys);
+	key_states = SDL_GetKeyboardState(num_keys);
 	return key_states[key_pressed];
 }
