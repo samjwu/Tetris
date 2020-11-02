@@ -2,6 +2,7 @@
 #define _APPCONSTANTS_
 
 #include "SDL/include/SDL.h"
+#include "SDL/include/SDL_messagebox.h"
 
 const SDL_MessageBoxButtonData Buttons[] = {
     /* .flags, .buttonid, .text */ 
