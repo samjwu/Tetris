@@ -42,25 +42,40 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         int pressed_key = rendering_engine.poll_key_input();
         switch (pressed_key) {
             case SDLK_RIGHT:
-                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos + 1, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation)) {
+                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos + 1, 
+                                            game_logic.current_tetromino_y_pos, 
+                                            game_logic.current_tetromino_shape, 
+                                            game_logic.current_tetromino_rotation)) {
                     game_logic.current_tetromino_x_pos++;
                     break;
                 }
             case SDLK_DOWN:
-                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos + 1, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation)) {
+                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, 
+                                            game_logic.current_tetromino_y_pos + 1, 
+                                            game_logic.current_tetromino_shape, 
+                                            game_logic.current_tetromino_rotation)) {
                     game_logic.current_tetromino_y_pos++;
                     break;
                 }
             case SDLK_LEFT:
-                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos - 1, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation)) {
-                    game_logic.current_tetromino_x_pos--
+                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos - 1, 
+                                            game_logic.current_tetromino_y_pos, 
+                                            game_logic.current_tetromino_shape, 
+                                            game_logic.current_tetromino_rotation)) {
+                    game_logic.current_tetromino_x_pos--;
                     break;
                 }
             case SDLK_SPACE: // instantly place current tetromino
-                while (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos + 1, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation)) {
+                while (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, 
+                                                game_logic.current_tetromino_y_pos + 1, 
+                                                game_logic.current_tetromino_shape, 
+                                                game_logic.current_tetromino_rotation)) {
                     game_logic.current_tetromino_y_pos++;
                 }
-                grid.place_tetromino(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation);
+                grid.place_tetromino(game_logic.current_tetromino_x_pos, 
+                                    game_logic.current_tetromino_y_pos, 
+                                    game_logic.current_tetromino_shape, 
+                                    game_logic.current_tetromino_rotation);
                 grid.clear_full_lines();
 
                 if (grid.game_over()) {
@@ -74,7 +89,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     } else if (buttonId == 0) {
                         // create new active instance of application
                         if (!RA_ActivateRestartProcess()) {
-                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Restart Failed", "Error occurred during restart. Exiting application.", NULL);
+                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, 
+                                                    "Restart Failed", 
+                                                    "Error occurred during restart. Exiting application.", 
+                                                    NULL);
                         }
                     } else { // buttonId == 1
                         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game Over", "Ending game.", NULL);
@@ -86,8 +104,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 game_logic.create_new_tetromino(); // generate random next tetromino
                 break;
             case SDLK_z: // rotate current tetromino
-                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, (game_logic.current_tetromino_rotation + 1) % 4) {
-                    game_logic.current_tetromino_rotation = (game_logic.current_tetromino_rotation + 1) % 4; // 4 possible rotations
+                if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, 
+                                            game_logic.current_tetromino_y_pos, 
+                                            game_logic.current_tetromino_shape, 
+                                            (game_logic.current_tetromino_rotation + 1) % 4)) {
+                    // 4 possible rotations
+                    game_logic.current_tetromino_rotation = (game_logic.current_tetromino_rotation + 1) % 4;
                 }
                 break;
         }
@@ -95,10 +117,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         // advance game by one tick
         unsigned long ticks_time_2 = SDL_GetTicks();
         if ((ticks_time_2 - ticks_time_1) > DELAY) {
-            if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos + 1, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation)) {
+            if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, 
+                                        game_logic.current_tetromino_y_pos + 1, 
+                                        game_logic.current_tetromino_shape, 
+                                        game_logic.current_tetromino_rotation)) {
                 game_logic.current_tetromino_y_pos++;
             } else {
-                grid.place_tetromino(game_logic.current_tetromino_x_pos, game_logic.current_tetromino_y_pos, game_logic.current_tetromino_shape, game_logic.current_tetromino_rotation);
+                grid.place_tetromino(game_logic.current_tetromino_x_pos, 
+                                    game_logic.current_tetromino_y_pos, 
+                                    game_logic.current_tetromino_shape, 
+                                    game_logic.current_tetromino_rotation);
                 grid.clear_full_lines();
 
                 if (grid.game_over()) {
@@ -112,7 +140,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     } else if (buttonId == 0) {
                         // create new active instance of application
                         if (!RA_ActivateRestartProcess()) {
-                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Restart Failed", "Error occurred during restart. Exiting application.", NULL);
+                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, 
+                                                    "Restart Failed", 
+                                                    "Error occurred during restart. Exiting application.", 
+                                                    NULL);
                         }
                     } else { // buttonId == 1
                         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game Over", "Ending game.", NULL);
