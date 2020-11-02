@@ -3,8 +3,15 @@
   
 #include "SDL/include/SDL.h"
 #include "SDL/SDL_GfxPrimitives/SDL_gfxPrimitives.h"
+#include <unordered_map>
 
 enum class Color {BLACK, WHITE, BLUE, RED};
+std::unordered_map<int, int*> ColorRgb = {
+                                            {(int) Color::BLACK, {0, 0, 0}},
+                                            {(int) Color::WHITE, {255, 255, 255}},
+                                            {(int) Color::BLUE, {0, 0, 255}},
+                                            {(int) Color::RED, {255, 0, 0}},
+                                        };
 
 class RenderingEngine {
     public:
