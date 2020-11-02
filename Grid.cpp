@@ -3,7 +3,7 @@
 /*
  * Constructor. Initializes grid.
  */
-void Grid::Grid(Tetrominos *tetrominos, int screen_height) {
+Grid::Grid(Tetrominos *tetrominos, int screen_height) {
     this->tetrominos = tetrominos;
     this->screen_height = screen_height;
     init_grid();
@@ -16,7 +16,7 @@ void Grid::clear_full_lines() {
     for (int grid_y = 0; grid_y < GRID_HEIGHT; grid_y++) {
         int grid_x = 0;
         while (grid_x < GRID_WIDTH) {
-            if (grid[grid_x][grid_y] != FULL) {
+            if (grid[grid_x][grid_y] != (int) TileSuperType::FULL) {
                 break;
             }
             grid_x++;
@@ -34,10 +34,10 @@ void Grid::clear_full_lines() {
 void Grid::place_tetromino(int x, int y, int shape, int rotation) {
     int grid_x, grid_y;
     int tetromino_x, tetromino_y;
-    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILES_PER_SIDE; grid_x++; tetromino_x++) {
-        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILES_PER_SIDE; grid_y++; tetromino_y++) {
-            if (tetrimonos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != TileSuperType::EMPTY) {
-                grid[grid_x][grid_y] = FULL;
+    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILES_PER_SIDE; grid_x++, tetromino_x++) {
+        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILES_PER_SIDE; grid_y++, tetromino_y++) {
+            if (tetrominos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != (int) TileSuperType::EMPTY) {
+                grid[grid_x][grid_y] = (int) TileSuperType::FULL;
             }
         }
     }
@@ -49,7 +49,7 @@ void Grid::place_tetromino(int x, int y, int shape, int rotation) {
  */
 bool Grid::game_over() {
     for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
-        if (grid[grid_x][0] == FULL) {
+        if (grid[grid_x][0] == (int) TileSuperType::FULL) {
             return true;
         }
     }
@@ -61,7 +61,7 @@ bool Grid::game_over() {
  * Check if tile is empty or full 
  */
 bool Grid::is_empty_tile(int x, int y) {
-    if (grid[x][y] == TileSuperType::EMPTY) {
+    if (grid[x][y] == (int) TileSuperType::EMPTY) {
         return true;
     } else {
         return false;
@@ -74,18 +74,19 @@ bool Grid::is_empty_tile(int x, int y) {
 bool Grid::tetromino_can_move(int x, int y, int shape, int rotation) {
     int grid_x, grid_y;
     int tetromino_x, tetromino_y;
-    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILES_PER_SIDE; grid_x++; tetromino_x++) {
-        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILES_PER_SIDE; grid_y++; tetromino_y++) {
+    for (grid_x = x, tetromino_x = 0; grid_x < x + TETROMINO_TILES_PER_SIDE; grid_x++, tetromino_x++) {
+        for (grid_y = y, tetromino_y = 0; grid_y < y + TETROMINO_TILES_PER_SIDE; grid_y++, tetromino_y++) {
             // Grid border collision check
             if (grid_x < 0 || grid_x > GRID_WIDTH - 1 || grid_y > GRID_HEIGHT - 1) {
-                if (tetrimonos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != TileSuperType::EMPTY) {
+                if (tetrominos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != (int) TileSuperType::EMPTY) {
                     return false;
                 }
             }
 
             // Other tetromino collision check
             if (grid_y >= 0) {
-                if (tetrimonos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != TileSuperType::EMPTY && is_empty_tile(grid_x, grid_y) == false) {
+                if (tetrominos->get_tile_type(shape, rotation, tetromino_x, tetromino_y) != (int) TileSuperType::EMPTY 
+                && is_empty_tile(grid_x, grid_y) == false) {
                     return false;
                 }
             }
@@ -115,7 +116,7 @@ int Grid::get_tile_y_pixel_pos(int y) {
 void Grid::init_grid() {
     for (int grid_x = 0; grid_x < GRID_WIDTH; grid_x++) {
         for (int grid_y = 0; grid_y < GRID_HEIGHT; grid_y++) {
-            grid[grid_x][grid_y] = TileSuperType::EMPTY;
+            grid[grid_x][grid_y] = (int) TileSuperType::EMPTY;
         }
     }
 }
