@@ -5,7 +5,7 @@
 
 #include "Grid.h"
 #include "RenderingEngine.h"
-#include "Tetriminos.h"
+#include "Tetrominos.h"
 
 #define DELAY 500 // delay before tetromino falls each tick measured in ms
 
