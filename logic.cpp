@@ -75,7 +75,7 @@ void Logic::generate_grid() {
                                 right_border + GRID_BORDER_WIDTH, this->screen_height - 1, Color::WHITE);
 	
 	// render tetromino tiles that were placed in the grid
-    grid_left = left_border + 1;
+    int grid_left = left_border + 1;
     for (int tile_x; tile_x < GRID_WIDTH; tile_x++) {
         for (int tile_y; tile_y < GRID_HEIGHT; tile_y++) {
             if (grid->is_empty_tile(tile_x, tile_y) == false) {
@@ -102,15 +102,15 @@ void Logic::generate_tetromino_tiles(int tetromino_x, int tetromino_y, int tetro
     for (int tile_y = 0; tile_y < TETROMINO_TILES_PER_SIDE; tile_y++) {
         for (int tile_x = 0; tile_x < TETROMINO_TILES_PER_SIDE; tile_x++) {
             switch (tetrominos->get_tile_type(tetromino_shape, tetromino_rotation, tile_x, tile_y)) {
-                case TileType::NORMAL:
+                case (int) TileType::NORMAL:
                     tile_color = Color::BLUE;
                     break;
-                case TileType::PIVOT:
+                case (int) TileType::PIVOT:
                     tile_color = Color::WHITE;
                     break;
             }
 
-            if (tetrominos->get_tile_type(tetromino_shape, tetromino_rotation, tile_x, tile_y) != TileType::EMPTY) {
+            if (tetrominos->get_tile_type(tetromino_shape, tetromino_rotation, tile_x, tile_y) != (int) TileType::EMPTY) {
                 rendering_engine->render_tile(tetromino_x_pixel + tile_x * TILE_SIZE, 
                                             tetromino_y_pixel + tile_y * TILE_SIZE, 
                                             tetromino_x_pixel + (tile_x + 1) * TILE_SIZE - 1, 
