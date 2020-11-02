@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "RenderingEngine.h"
 
 static SDL_Surface *screen;
@@ -21,7 +22,7 @@ RenderingEngine::RenderingEngine() {
  */
 void RenderingEngine::clear_screen() {
 	// boxColor(screen, 0, 0, screen->w - 1, screen->h - 1, colors[(int) Color::BLACK]);
-	SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(sdl_renderer, 0, 0, 0, 255);
 	SDL_RenderClear(sdl_renderer);
 }
 
@@ -40,7 +41,7 @@ void RenderingEngine::update_screen() {
 */
 void RenderingEngine::render_tile(int x1, int y1, int x2, int y2, Color tile_color) {
     boxColor(screen, x1, y1, x2, y2 - 1, colors[(int) tile_color]);
-	// SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
+	// SDL_SetRenderDrawColor(sdl_renderer, 0, 0, 0, 255);
 }
 
 /*
