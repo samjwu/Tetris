@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     // ticks time in milliseconds
     unsigned long ticks_time_1 = SDL_GetTicks();
 
-    while (rendering_engine.get_key_state(SDLK_ESCAPE) == 0) {
+    while (rendering_engine.get_key_state(SDL_SCANCODE_ESCAPE) == 0) {
         // init game screen and starting game logic objects
         rendering_engine.clear_screen();
         game_logic.init_game();
@@ -41,7 +41,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         // handle keyboard inputs
         int pressed_key = rendering_engine.poll_key_input();
         switch (pressed_key) {
-            case SDLK_RIGHT:
+            case SDL_SCANCODE_RIGHT:
                 if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos + 1, 
                                             game_logic.current_tetromino_y_pos, 
                                             game_logic.current_tetromino_shape, 
@@ -49,7 +49,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     game_logic.current_tetromino_x_pos++;
                     break;
                 }
-            case SDLK_DOWN:
+            case SDL_SCANCODE_DOWN:
                 if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, 
                                             game_logic.current_tetromino_y_pos + 1, 
                                             game_logic.current_tetromino_shape, 
@@ -57,7 +57,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     game_logic.current_tetromino_y_pos++;
                     break;
                 }
-            case SDLK_LEFT:
+            case SDL_SCANCODE_LEFT:
                 if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos - 1, 
                                             game_logic.current_tetromino_y_pos, 
                                             game_logic.current_tetromino_shape, 
@@ -65,7 +65,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     game_logic.current_tetromino_x_pos--;
                     break;
                 }
-            case SDLK_SPACE: // instantly place current tetromino
+            case SDL_SCANCODE_SPACE: // instantly place current tetromino
                 while (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, 
                                                 game_logic.current_tetromino_y_pos + 1, 
                                                 game_logic.current_tetromino_shape, 
@@ -103,7 +103,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
                 game_logic.create_new_tetromino(); // generate random next tetromino
                 break;
-            case SDLK_z: // rotate current tetromino
+            case SDL_SCANCODE_Z: // rotate current tetromino
                 if (grid.tetromino_can_move(game_logic.current_tetromino_x_pos, 
                                             game_logic.current_tetromino_y_pos, 
                                             game_logic.current_tetromino_shape, 
